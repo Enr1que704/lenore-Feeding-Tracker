@@ -19,7 +19,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => fetch("http://localhost:3000/test").then((res) => res.json()).then((data) => setMessage(data.message))}>
+        <button onClick={() => fetch("http://localhost:3000/db/getAll").then((res) => res.json()).then((data) => setMessage(data[0].date))}>
           The message is {message}
         </button>
         <p>
