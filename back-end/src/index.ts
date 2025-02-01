@@ -26,6 +26,17 @@ app.post("/db/addEntry", async(req: Request, res: Response) => {
     res.json(result.rows);
 });
 
+app.post("/db/deleteEntry", async(req: Request, res: Response) => {
+    let { id } = req.body;
+    let result = await pool.query("DELETE FROM feeds WHERE id = $1", [id]);
+    res.json(result.rows);
+});
+
+app.post("/db/updateEntry", async(req: Request, res: Response) => {
+    let { id, date, time, amount, medicine, probiotic } = req.body;
+    let result = await pool.query("UPDATE feeds SET date = $2, time = $3, amount = $4, medicine = $5, probiotic = $6 WHERE id = $1", [id, date, time, amount, medicine, probiotic]);
+    res.json(result.rows);
+})
 
 
 app.listen(PORT, () => {
